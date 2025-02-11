@@ -1,4 +1,5 @@
 import ClientStores from "@/components/home/client-stories";
+import ClientTestimonials from "@/components/home/client-testimonials";
 import Features from "@/components/home/features";
 import React from "react";
 
@@ -9,6 +10,7 @@ export default function Home() {
         <div className="py-24 grid gap-16">
           <Features />
           <ClientStores />
+          <ClientTestimonials />
         </div>
       </div>
     </main>

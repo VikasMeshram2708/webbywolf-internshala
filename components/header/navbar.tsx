@@ -15,9 +15,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Menu } from "lucide-react";
 import Hero from "../home/hero";
+import { useWindowScroll } from "@uidotdev/usehooks";
+import { twMerge } from "tailwind-merge";
+import clsx from "clsx";
 
 export default function Navbar() {
+  const [{ y }] = useWindowScroll();
   const [isOpen, setIsOpen] = useState(false);
+
   const navData = [
     { title: "Lorem Ipsum", url: "#" },
     { title: "Lorem Ipsum", url: "#" },
@@ -26,7 +31,15 @@ export default function Navbar() {
 
   return (
     <div className="w-full">
-      <header className="w-full lg:fixed top-0 z-40">
+      <header
+        className={twMerge(
+          "w-full fixed top-0 z-40 transition-colors duration-300",
+          clsx({
+            "bg-white shadow-md": y > 50,
+            "bg-transparent": y <= 50,
+          })
+        )}
+      >
         <div className="container mx-auto flex items-center justify-between p-4 lg:px-12">
           {/* Logo */}
           <div className="text-2xl font-bold tracking-wide bg-gray-500/40 px-4 py-2 rounded-md text-black">
@@ -78,6 +91,8 @@ export default function Navbar() {
           </div>
         </div>
       </header>
+
+      {/* Hero Section */}
       <div className="lg:relative top-0 w-full">
         <Hero />
       </div>
