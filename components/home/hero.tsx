@@ -4,7 +4,6 @@ import Image from "next/image";
 import React from "react";
 import heroImg from "@/public/home/hero.png";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 import { ArrowRight, CircleCheck } from "lucide-react";
 import { useWindowSize } from "@uidotdev/usehooks";
 
@@ -31,10 +30,10 @@ function Hero() {
             className="max-w-lg flex flex-wrap items-center gap-3"
           >
             <Input />
-            <Button className="bg-hblue flex items-center gap-2">
+            <button className="px-4 py-2 rounded-md  text-white bg-hblue flex items-center gap-2">
               <span>Get started</span>
               <ArrowRight />
-            </Button>
+            </button>
           </form>
           <section className="text-sm flex items-center gap-2">
             <CircleCheck color="white" fill="#155ADA" className="w-6 h-6" />
