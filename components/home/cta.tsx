@@ -4,9 +4,6 @@ import React from "react";
 import headerImg from "@/public/home/cta/cta-header.png";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -25,6 +22,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ArrowRight } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from 'zod'
 
 export default function CTA() {
   return (
@@ -82,24 +82,22 @@ function CTAHeader() {
   );
 }
 
-
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(1, "Phone number is required"),
-  timeframe: z.string().min(1, "Time frame is required"),
-  quantity: z.number().min(1, "Quantity is required"),
-  size: z.string().min(1, "Size is required"),
-  description: z.string().optional(),
+  email: z.string().email("Invalid email"),
+  phone: z.string().min(10, "Invalid phone number"),
+  timeframe: z.string(),
+  size: z.string(),
+  quantity: z.string(),
+  description: z.string().min(10, "Description must be at least 10 characters"),
 });
-type schema = z.infer<typeof schema>
 
 function CTAForm() {
   const form = useForm({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: schema) => {
+  const onSubmit = (data: any) => {
     console.log(data);
   };
 
@@ -109,7 +107,6 @@ function CTAForm() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        viewport={{ once: false }}
         className="uppercase font-bold text-xl md:text-3xl text-center py-10 md:py-20"
       >
         Request a Quote
@@ -118,102 +115,181 @@ function CTAForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="py-10 grid max-w-5xl mx-auto grid-cols-1 md:grid-cols-2 gap-4 p-4"
       >
-        {[
-          { name: "name", label: "Name" },
-          { name: "email", label: "Email" },
-          { name: "phone", label: "Phone Number" },
-        ].map(({ name, label }) => (
-          <FormField
-            key={name}
-            control={form.control}
-            name={name}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{label}</FormLabel>
-                <FormControl>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: false }}
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: false }}
+                >
+                  <Input {...field} />
+                </motion.div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: false }}
+                >
+                  <Input {...field} />
+                </motion.div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone Number</FormLabel>
+              <FormControl>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: false }}
+                >
+                  <Input {...field} />
+                </motion.div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="timeframe"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Time Frame *</FormLabel>
+              <FormControl>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: false }}
+                >
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
                   >
-                    <Input {...field} />
-                  </motion.div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        ))}
-
-        {[
-          {
-            name: "timeframe",
-            label: "Time Frame",
-            options: ["1-2 weeks", "1 month", "2-3 months"],
-          },
-          {
-            name: "size",
-            label: "Size",
-            options: ["Small", "Medium", "Large"],
-          },
-          {
-            name: "quantity",
-            label: "Quantity",
-            options: ["1", "2", "3"],
-          },
-        ].map(({ name, label, options }) => (
-          <FormField
-            key={name}
-            control={form.control}
-            name={name}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  {label} <span className="text-red-500">*</span>
-                </FormLabel>
-                <FormControl>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: false }}
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select Time Frame" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1-2 weeks">1-2 weeks</SelectItem>
+                      <SelectItem value="1 month">1 month</SelectItem>
+                      <SelectItem value="2-3 months">2-3 months</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </motion.div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="size"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Size *</FormLabel>
+              <FormControl>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: false }}
+                >
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
                   >
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger>
-                        <SelectValue placeholder={`Choose ${label}`} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {options.map((option) => (
-                          <SelectItem key={option} value={option}>
-                            {option}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </motion.div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        ))}
-
+                    <SelectTrigger>
+                      <SelectValue placeholder="Choose Size" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="small">Small</SelectItem>
+                      <SelectItem value="medium">Medium</SelectItem>
+                      <SelectItem value="large">Large</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </motion.div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="quantity"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Quantity *</FormLabel>
+              <FormControl>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: false }}
+                >
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Choose Quantity" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1">1</SelectItem>
+                      <SelectItem value="2">2</SelectItem>
+                      <SelectItem value="3">3</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </motion.div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <div className="col-span-1 md:col-span-2">
           <FormField
             control={form.control}
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Please Describe Your Project*</FormLabel>
+                <FormLabel>Please Describe Your Project *</FormLabel>
                 <FormControl>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                     viewport={{ once: false }}
                   >
-                    <Textarea rows={10} {...field} placeholder="Choose a project type" />
+                    <Textarea
+                      rows={10}
+                      {...field}
+                      placeholder="Describe your project..."
+                    />
                   </motion.div>
                 </FormControl>
                 <FormMessage />
@@ -221,20 +297,27 @@ function CTAForm() {
             )}
           />
         </div>
-
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: false }}
           className="flex items-center justify-center flex-col mx-auto col-span-1 md:col-span-2"
         >
           <div className="text-sm text-muted-foreground text-center mb-4">
             By submitting this form you agree to our{" "}
-            <span className="underline underline-offset-4">Terms of service</span> and
-            <span className="underline underline-offset-4"> Privacy policy.</span>
+            <span className="underline underline-offset-4">
+              Terms of service
+            </span>{" "}
+            and{" "}
+            <span className="underline underline-offset-4">
+              Privacy policy.
+            </span>
           </div>
-          <button className="px-4 py-2 rounded-md text-white bg-hblue w-full md:w-44 flex items-center justify-center gap-2">
+          <button
+            type="submit"
+            className="px-4 py-2 rounded-md text-white bg-hblue w-full md:w-44 flex items-center justify-center gap-2"
+          >
             <span>Get started</span>
             <ArrowRight />
           </button>
