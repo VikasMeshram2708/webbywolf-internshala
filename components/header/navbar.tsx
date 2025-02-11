@@ -1,6 +1,6 @@
 "use client";
-
 import React, { useState } from "react";
+import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -31,38 +31,59 @@ export default function Navbar() {
 
   return (
     <div className="w-full">
-      <header
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 100 }}
         className={twMerge(
           "w-full fixed top-0 z-40 transition-colors duration-300",
           clsx({
-            "bg-white shadow-md": y > 50,
-            "bg-transparent": y <= 50,
+            "bg-white shadow-md": y && y > 50,
+            "bg-transparent": y && y <= 50,
           })
         )}
       >
         <div className="container mx-auto flex items-center justify-between p-4 lg:px-12">
           {/* Logo */}
-          <div className="text-2xl font-bold tracking-wide bg-gray-500/40 px-4 py-2 rounded-md text-black">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl font-bold tracking-wide bg-gray-500/40 px-4 py-2 rounded-md text-black"
+          >
             LOGO
-          </div>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-6">
             {navData.map((data, index) => (
-              <NavigationMenu key={index}>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>{data.title}</NavigationMenuTrigger>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <NavigationMenu>
+                  <NavigationMenuList>
+                    <NavigationMenuItem>
+                      <NavigationMenuTrigger>
+                        {data.title}
+                      </NavigationMenuTrigger>
+                    </NavigationMenuItem>
+                  </NavigationMenuList>
+                </NavigationMenu>
+              </motion.div>
             ))}
           </nav>
 
           {/* Sign In Button */}
-          <button className="px-4 py-2 rounded-md bg-white text-black shadow-md hidden md:inline-block">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-4 py-2 rounded-md bg-white text-black shadow-md hidden md:inline-block"
+          >
             Sign In
-          </button>
+          </motion.button>
 
           {/* Mobile Menu */}
           <div className="md:hidden">
@@ -73,27 +94,32 @@ export default function Navbar() {
                   size="icon"
                   onClick={() => setIsOpen(!isOpen)}
                 >
-                  <Menu className="w-6 h-6" />
+                  <motion.div whileTap={{ scale: 0.9 }}>
+                    <Menu className="w-6 h-6" />
+                  </motion.div>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-40">
                 {navData.map((data, index) => (
-                  <a
+                  <motion.a
                     key={index}
                     href={data.url}
                     className="block px-4 py-2 hover:bg-gray-200"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
                   >
                     {data.title}
-                  </a>
+                  </motion.a>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Hero Section */}
-      <div className="lg:relative top-0 w-full">
+      <div className="relative top-0 w-full pt-16 lg:pt-0">
         <Hero />
       </div>
     </div>

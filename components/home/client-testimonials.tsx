@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import { motion } from "motion/react";
 import bgImg from "@/public/home/testimonials/client-testimonials.png";
 import Image from "next/image";
 import i1 from "@/public/home/testimonials/1.png";
@@ -34,17 +36,40 @@ function TestimonialsHeader() {
         sizes="100vw"
         className="object-cover"
       />
-      <div className="absolute top-0 z-[999] left-0 p-4">
-        <div className="bg-gray-400 w-24 md:w-32 text-lg md:text-xl font-bold text-black rounded-md text-center p-2">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="absolute top-0 z-10 left-0 p-4"
+      >
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="bg-gray-400 w-24 md:w-32 text-lg md:text-xl font-bold text-black rounded-md text-center p-2 mt-5"
+        >
           LOGO
-        </div>
-      </div>
-      <div className="absolute inset-0 flex flex-col items-center justify-center space-y-8 p-4 bg-black bg-opacity-50 text-white">
-        <h2 className="text-center mb-4 text-xl md:text-2xl lg:text-4xl font-bold max-w-4xl mx-auto">
+        </motion.div>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="absolute inset-0 flex flex-col items-center justify-center space-y-8 p-4 bg-black bg-opacity-50 text-white"
+      >
+        <motion.h2
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="text-center mb-4 text-xl md:text-2xl lg:text-4xl font-bold max-w-4xl mx-auto"
+        >
           Lorem ipsum dolor sit amet consectetur. Quis adipiscing purus egestas
           aliquam viverra mi.
-        </h2>
-        <section className="max-w-3xl font-semibold mx-auto leading-relaxed text-base space-y-8">
+        </motion.h2>
+        <motion.section
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="max-w-3xl font-semibold mx-auto leading-relaxed text-base space-y-8"
+        >
           <p className="text-center mb-4">
             Lorem ipsum dolor sit amet consectetur. Mattis justo euismod
             volutpat vestibulum nisi at ac risus amet. Mi accumsan sagittis
@@ -59,8 +84,8 @@ function TestimonialsHeader() {
             Nulla luctus quam lacus lacus non at. Tincidunt morbi feugiat a
             pulvinar euismod natoque nulla ligula. Tincidunt cursus vitae leo.
           </p>
-        </section>
-      </div>
+        </motion.section>
+      </motion.div>
     </div>
   );
 }
@@ -80,14 +105,34 @@ function CompanyList() {
     { src: i11 },
     { src: i12 },
   ];
+
   return (
-    <div className="w-full min-h-screen py-20 space-y-8">
-      <h2 className="uppercase text-center text-xl md:text-2xl lg:text-3xl xl:text-4xl max-w-2xl mx-auto font-bold">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="w-full min-h-screen py-20 space-y-8"
+    >
+      <motion.h2
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        className="uppercase text-center text-xl md:text-2xl lg:text-3xl xl:text-4xl max-w-2xl mx-auto font-bold"
+      >
         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-      </h2>
+      </motion.h2>
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center gap-8 flex-wrap max-w-4xl mx-auto justify-center">
         {data.map((item, idx) => (
-          <li key={idx}>
+          <motion.li
+            key={idx}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              delay: 0.1 * idx,
+              duration: 0.5
+            }}
+            whileHover={{ scale: 1.1 }}
+          >
             <Image
               src={item.src}
               alt="testimonials"
@@ -96,9 +141,9 @@ function CompanyList() {
               className="bg-cover"
               placeholder="blur"
             />
-          </li>
+          </motion.li>
         ))}
       </ul>
-    </div>
+    </motion.div>
   );
 }
