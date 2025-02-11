@@ -39,7 +39,7 @@ function TestimonialsHeader() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.5 }}
         className="absolute top-0 z-10 left-0 p-4"
       >
@@ -53,14 +53,14 @@ function TestimonialsHeader() {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.8 }}
         className="absolute inset-0 flex flex-col items-center justify-center space-y-8 p-4 bg-black bg-opacity-50 text-white"
       >
         <motion.h2
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-center mb-4 text-xl md:text-2xl lg:text-4xl font-bold max-w-4xl mx-auto"
         >
@@ -70,7 +70,7 @@ function TestimonialsHeader() {
         <motion.section
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: 0.5, duration: 0.6 }}
           className="max-w-3xl font-semibold mx-auto leading-relaxed text-base space-y-8"
         >
@@ -114,14 +114,14 @@ function CompanyList() {
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
       transition={{ duration: 0.5 }}
       className="w-full py-20 space-y-8"
     >
       <motion.h2
         initial={{ y: 30, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ delay: 0.3, duration: 0.6 }}
         className="uppercase text-center text-xl md:text-2xl lg:text-3xl xl:text-4xl max-w-2xl mx-auto font-bold"
       >
@@ -130,7 +130,7 @@ function CompanyList() {
       <motion.ul
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         variants={{
           hidden: { opacity: 0 },
           visible: {

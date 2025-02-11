@@ -28,16 +28,10 @@ import { ArrowRight } from "lucide-react";
 
 export default function CTA() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: false }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen w-full"
-    >
+    <div>
       <CTAHeader />
       <CTAForm />
-    </motion.div>
+    </div>
   );
 }
 
@@ -105,222 +99,146 @@ function CTAForm() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data:schema ) => {
+  const onSubmit = (data: schema) => {
     console.log(data);
   };
 
   return (
     <Form {...form}>
       <motion.h2
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="uppercase font-bold text-xl md:text-3xl text-center py-10 md:py-20"
-      >
-      Request a Quote
-      </motion.h2>
-      <form
-      onSubmit={form.handleSubmit(onSubmit)}
-      className="py-10 grid max-w-5xl mx-auto grid-cols-1 md:grid-cols-2 gap-4 p-4"
-      >
-      <FormField
-        control={form.control}
-        name="name"
-        render={({ field }) => (
-        <FormItem>
-          <FormLabel>Name</FormLabel>
-          <FormControl>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Input {...field} />
-          </motion.div>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="email"
-        render={({ field }) => (
-        <FormItem>
-          <FormLabel>Email</FormLabel>
-          <FormControl>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Input {...field} />
-          </motion.div>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="phone"
-        render={({ field }) => (
-        <FormItem>
-          <FormLabel>Phone Number</FormLabel>
-          <FormControl>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Input {...field} />
-          </motion.div>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="timeframe"
-        render={({ field }) => (
-        <FormItem>
-          <FormLabel>
-          Time Frame
-          <span className="text-red-500">*</span>
-          </FormLabel>
-          <FormControl>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Select
-            onValueChange={field.onChange}
-            defaultValue={field.value}
-            >
-            <SelectTrigger>
-              <SelectValue placeholder="Select Time Frame" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1-2 weeks">1-2 weeks</SelectItem>
-              <SelectItem value="1 month">1 month</SelectItem>
-              <SelectItem value="2-3 months">2-3 months</SelectItem>
-            </SelectContent>
-            </Select>
-          </motion.div>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="size"
-        render={({ field }) => (
-        <FormItem>
-          <FormLabel>
-          Size
-          <span className="text-red-500">*</span>
-          </FormLabel>
-          <FormControl>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Select
-            onValueChange={field.onChange}
-            defaultValue={field.value}
-            >
-            <SelectTrigger>
-              <SelectValue placeholder="Choose Size" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="small">Small</SelectItem>
-              <SelectItem value="medium">Medium</SelectItem>
-              <SelectItem value="large">Large</SelectItem>
-            </SelectContent>
-            </Select>
-          </motion.div>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="quantity"
-        render={({ field }) => (
-        <FormItem>
-          <FormLabel>
-          Quantity
-          <span className="text-red-500">*</span>
-          </FormLabel>
-          <FormControl>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Select
-            onValueChange={field.onChange}
-            defaultValue={field.value}
-            >
-            <SelectTrigger>
-              <SelectValue placeholder="Choose Quantity" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1">1</SelectItem>
-              <SelectItem value="2">2</SelectItem>
-              <SelectItem value="3">3</SelectItem>
-            </SelectContent>
-            </Select>
-          </motion.div>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-        )}
-      />
-      <div className="col-span-1 md:col-span-2">
-        <FormField
-        control={form.control}
-        name="description"
-        render={({ field }) => (
-          <FormItem>
-          <FormLabel>Please Describe Your Project*</FormLabel>
-          <FormControl>
-            <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            >
-            <Textarea rows={10} {...field} placeholder="Choose a project type"/>
-            </motion.div>
-          </FormControl>
-          <FormMessage />
-          </FormItem>
-        )}
-        />
-      </div>
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-center flex-col mx-auto col-span-1 md:col-span-2"
+        viewport={{ once: false }}
+        className="uppercase font-bold text-xl md:text-3xl text-center py-10 md:py-20"
       >
-        <div className="text-sm text-muted-foreground text-center mb-4">
-        By submitting this form you agree to our{" "}
-        <span className="underline underline-offset-4">Terms of service</span> and
-        <span className="underline underline-offset-4">
-          {" "}Privacy policy.
-        </span>
+        Request a Quote
+      </motion.h2>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="py-10 grid max-w-5xl mx-auto grid-cols-1 md:grid-cols-2 gap-4 p-4"
+      >
+        {[
+          { name: "name", label: "Name" },
+          { name: "email", label: "Email" },
+          { name: "phone", label: "Phone Number" },
+        ].map(({ name, label }) => (
+          <FormField
+            key={name}
+            control={form.control}
+            name={name}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{label}</FormLabel>
+                <FormControl>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: false }}
+                  >
+                    <Input {...field} />
+                  </motion.div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))}
+
+        {[
+          {
+            name: "timeframe",
+            label: "Time Frame",
+            options: ["1-2 weeks", "1 month", "2-3 months"],
+          },
+          {
+            name: "size",
+            label: "Size",
+            options: ["Small", "Medium", "Large"],
+          },
+          {
+            name: "quantity",
+            label: "Quantity",
+            options: ["1", "2", "3"],
+          },
+        ].map(({ name, label, options }) => (
+          <FormField
+            key={name}
+            control={form.control}
+            name={name}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  {label} <span className="text-red-500">*</span>
+                </FormLabel>
+                <FormControl>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: false }}
+                  >
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <SelectTrigger>
+                        <SelectValue placeholder={`Choose ${label}`} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {options.map((option) => (
+                          <SelectItem key={option} value={option}>
+                            {option}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </motion.div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))}
+
+        <div className="col-span-1 md:col-span-2">
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Please Describe Your Project*</FormLabel>
+                <FormControl>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: false }}
+                  >
+                    <Textarea rows={10} {...field} placeholder="Choose a project type" />
+                  </motion.div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
-        <button className="px-4 py-2 rounded-md text-white bg-hblue w-full md:w-44 flex items-center justify-center gap-2">
-        <span>Get started</span>
-        <ArrowRight />
-        </button>
-      </motion.section>
+
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false }}
+          className="flex items-center justify-center flex-col mx-auto col-span-1 md:col-span-2"
+        >
+          <div className="text-sm text-muted-foreground text-center mb-4">
+            By submitting this form you agree to our{" "}
+            <span className="underline underline-offset-4">Terms of service</span> and
+            <span className="underline underline-offset-4"> Privacy policy.</span>
+          </div>
+          <button className="px-4 py-2 rounded-md text-white bg-hblue w-full md:w-44 flex items-center justify-center gap-2">
+            <span>Get started</span>
+            <ArrowRight />
+          </button>
+        </motion.section>
       </form>
     </Form>
   );

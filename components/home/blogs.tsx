@@ -45,14 +45,14 @@ export default function Blogs() {
       <motion.article
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="max-w-4xl mb-20 space-y-4 px-4"
       >
         <motion.p
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-lg text-blue-600 font-semibold"
         >
@@ -61,7 +61,7 @@ export default function Blogs() {
         <motion.h2
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: 0.4, duration: 0.5 }}
           className="text-3xl md:text-5xl font-extrabold"
         >
@@ -70,7 +70,7 @@ export default function Blogs() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: 0.6, duration: 0.5 }}
           className="mt-4 max-w-lg"
         >
@@ -84,7 +84,7 @@ export default function Blogs() {
       <motion.ul
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         variants={{
           hidden: { opacity: 0 },
           visible: {
@@ -109,7 +109,7 @@ export default function Blogs() {
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 <Image
