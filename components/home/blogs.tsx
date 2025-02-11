@@ -7,6 +7,7 @@ import b4 from "@/public/home/blogs/b4.png";
 import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
 import Image from "next/image";
 import { motion } from "motion/react";
+import gradient from "@/public/home/blogs/blogs-gradient.svg";
 
 export default function Blogs() {
   const blogsData = [
@@ -40,7 +41,14 @@ export default function Blogs() {
     },
   ];
   return (
-    <div className="min-h-screen w-full">
+    <div
+      className="min-h-screen w-full"
+      style={{
+        background: `url(${gradient.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       {/* Header Section */}
       <motion.article
         initial={{ opacity: 0, y: 20 }}
