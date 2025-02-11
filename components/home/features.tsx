@@ -5,7 +5,6 @@ import img1 from "@/public/home/features/feat1.png";
 import img2 from "@/public/home/features/feat2.png";
 import img3 from "@/public/home/features/feat3.png";
 import { ArrowRight, Phone } from "lucide-react";
-import { Button } from "../ui/button";
 
 export default function Features() {
   const featuresData = [
