@@ -15,6 +15,7 @@ import i9 from "@/public/home/testimonials/9.png";
 import i10 from "@/public/home/testimonials/10.png";
 import i11 from "@/public/home/testimonials/11.png";
 import i12 from "@/public/home/testimonials/12.png";
+import { useEffect } from "react";
 
 export default function ClientTestimonials() {
   return (
@@ -24,7 +25,6 @@ export default function ClientTestimonials() {
     </div>
   );
 }
-
 function TestimonialsHeader() {
   return (
     <div className="min-h-screen w-full relative">
@@ -38,7 +38,8 @@ function TestimonialsHeader() {
       />
       <motion.div
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5 }}
         className="absolute top-0 z-10 left-0 p-4"
       >
@@ -51,13 +52,15 @@ function TestimonialsHeader() {
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         className="absolute inset-0 flex flex-col items-center justify-center space-y-8 p-4 bg-black bg-opacity-50 text-white"
       >
         <motion.h2
           initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-center mb-4 text-xl md:text-2xl lg:text-4xl font-bold max-w-4xl mx-auto"
         >
@@ -66,7 +69,8 @@ function TestimonialsHeader() {
         </motion.h2>
         <motion.section
           initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.6 }}
           className="max-w-3xl font-semibold mx-auto leading-relaxed text-base space-y-8"
         >
@@ -91,6 +95,10 @@ function TestimonialsHeader() {
 }
 
 function CompanyList() {
+  useEffect(() => {
+    // Trigger animations on mount
+  }, []);
+
   const data = [
     { src: i1 },
     { src: i2 },
@@ -109,27 +117,39 @@ function CompanyList() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className="w-full min-h-screen py-20 space-y-8"
     >
       <motion.h2
         initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.6 }}
         className="uppercase text-center text-xl md:text-2xl lg:text-3xl xl:text-4xl max-w-2xl mx-auto font-bold"
       >
         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
       </motion.h2>
-      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center gap-8 flex-wrap max-w-4xl mx-auto justify-center">
+      <motion.ul
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.2 },
+          },
+        }}
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center gap-8 flex-wrap max-w-4xl mx-auto justify-center"
+      >
         {data.map((item, idx) => (
           <motion.li
             key={idx}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: 0.1 * idx,
-              duration: 0.5
+            variants={{
+              hidden: { opacity: 0, scale: 0.8 },
+              visible: { opacity: 1, scale: 1 },
             }}
             whileHover={{ scale: 1.1 }}
           >
@@ -139,11 +159,10 @@ function CompanyList() {
               width={100}
               height={100}
               className="bg-cover"
-              placeholder="blur"
             />
           </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </motion.div>
   );
 }

@@ -8,19 +8,19 @@ import { ArrowRight, CircleCheck } from "lucide-react";
 import { useWindowSize } from "@uidotdev/usehooks";
 
 function Hero() {
-  const { width = 0 } = useWindowSize();
+  const { width } = useWindowSize() || { width: 0 };
 
   return (
-    <div className="w-full grid grid-cols-1 md:grid-cols-2 items-center gap-8 container mx-auto">
+    <div className="w-full h-screen grid grid-cols-1 md:grid-cols-2 items-center gap-8 container mx-auto">
       {/* Left Side */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
         className="grid gap-8 px-6"
       >
         <div className="grid gap-4">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
@@ -28,7 +28,7 @@ function Hero() {
           >
             Lorem ipsum dolor sit amet.
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }}
@@ -39,16 +39,16 @@ function Hero() {
             quae inventore qui facere porro, earum neque!
           </motion.p>
         </div>
-        <motion.section 
+        <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
           className="grid gap-5"
         >
-            <form
+          <form
             action=""
             className="max-w-lg flex flex-wrap items-center gap-3"
-            >
+          >
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
@@ -59,13 +59,13 @@ function Hero() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 rounded-md text-white bg-hblue flex items-center gap-2"
+              className="px-4 py-2 rounded-md text-white bg-blue-500 flex items-center gap-2"
             >
               <span>Get started</span>
               <ArrowRight />
             </motion.button>
-            </form>
-          <motion.section 
+          </form>
+          <motion.section
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
@@ -78,47 +78,49 @@ function Hero() {
       </motion.section>
 
       {/* Right Side (Image) */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7 }}
-        className="flex justify-center md:justify-end px-6 py-2"
+        className="h-full flex items-center justify-center md:justify-end px-6 relative"
       >
-        {width && width > 768 ? (
+        {width && width > 1024 ? (
           <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        className="relative w-full h-4/5"
+        transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <Image
-              src={heroImg}
-              width={500}
-              height={500}
-              alt="hero image"
-              priority
-              className="object-cover md:ml-auto bg-cover"
-              style={{ clipPath: "polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
-            />
+        <Image
+          src={heroImg}
+          fill
+          alt="hero image"
+          priority
+          className="object-cover md:ml-auto"
+          style={{
+            clipPath: "polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          }}
+        />
           </motion.div>
         ) : (
           <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="relative w-full h-64 md:h-4/5"
           >
-            <Image
-              src={heroImg}
-              width={500}
-              height={500}
-              alt="hero image"
-              priority
-              className="object-cover md:ml-auto bg-cover"
-            />
+        <Image
+          src={heroImg}
+          fill
+          alt="hero image"
+          priority
+          className="object-cover"
+        />
           </motion.div>
         )}
       </motion.section>
-    </div>
-  );
-}
+        </div>
+      );
+    }
 
-export default Hero;
+    export default Hero;

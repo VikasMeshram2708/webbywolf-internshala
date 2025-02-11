@@ -30,7 +30,7 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col items-center justify-center">
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -43,7 +43,7 @@ export default function Navbar() {
           })
         )}
       >
-        <div className="container mx-auto flex items-center justify-between p-4 lg:px-12">
+        <div className="container mx-auto flex items-center justify-between p-4 lg:px-8">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -55,25 +55,28 @@ export default function Navbar() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex gap-6">
-            {navData.map((data, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <NavigationMenu>
-                  <NavigationMenuList>
-                    <NavigationMenuItem>
-                      <NavigationMenuTrigger>
+          <nav>
+            <ul className="hidden md:flex gap-6">
+              {navData.map((data, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                >
+                  <li key={idx}>
+                    <select className="bg-transparent" name="" id="">
+                      <option
+                        value={data.title.toLowerCase()}
+                        className="capitalize"
+                      >
                         {data.title}
-                      </NavigationMenuTrigger>
-                    </NavigationMenuItem>
-                  </NavigationMenuList>
-                </NavigationMenu>
-              </motion.div>
-            ))}
+                      </option>
+                    </select>
+                  </li>
+                </motion.div>
+              ))}
+            </ul>
           </nav>
 
           {/* Sign In Button */}
@@ -119,7 +122,7 @@ export default function Navbar() {
       </motion.header>
 
       {/* Hero Section */}
-      <div className="relative top-0 w-full pt-16 lg:pt-0">
+      <div className="relative -top-20  w-full">
         <Hero />
       </div>
     </div>

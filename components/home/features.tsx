@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { motion } from "motion/react";
+import React, { useRef } from "react";
+import { motion, useInView } from "motion/react";
 import featuresImg from "@/public/home/features/features.png";
 import Image from "next/image";
 import img1 from "@/public/home/features/feat1.png";
@@ -27,10 +27,14 @@ export default function Features() {
     },
   ];
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false });
+
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={isInView ? { opacity: 1 } : {}}
       transition={{ duration: 0.5 }}
       className="w-full grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-5 max-w-screen-2xl float-end shadow-2xl border-b-4"
       style={{
@@ -41,13 +45,13 @@ export default function Features() {
     >
       <motion.div 
         initial={{ x: -50, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
+        animate={isInView ? { x: 0, opacity: 1 } : {}}
         transition={{ duration: 0.6 }}
         className="w-full"
       >
         <motion.h2
           initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-xl py-5 md:text-2xl lg:text-3xl font-bold text-blue-600"
         >
@@ -55,7 +59,7 @@ export default function Features() {
         </motion.h2>
         <motion.article
           initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ delay: 0.3, duration: 0.5 }}
           className="space-y-8"
         >
@@ -75,7 +79,7 @@ export default function Features() {
             <motion.article
               key={idx}
               initial={{ x: -30, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              animate={isInView ? { x: 0, opacity: 1 } : {}}
               transition={{ delay: 0.4 + idx * 0.2, duration: 0.5 }}
               className="flex items-center gap-4 md:gap-8"
             >
@@ -102,7 +106,7 @@ export default function Features() {
 
       <motion.div
         initial={{ x: 50, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
+        animate={isInView ? { x: 0, opacity: 1 } : {}}
         transition={{ duration: 0.6 }}
         className="w-full flex justify-center md:justify-end"
       >
@@ -123,7 +127,7 @@ export default function Features() {
 
       <motion.div
         initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        animate={isInView ? { y: 0, opacity: 1 } : {}}
         transition={{ delay: 0.8, duration: 0.5 }}
         className="flex items-center gap-8"
       >
