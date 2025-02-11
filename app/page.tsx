@@ -1,3 +1,4 @@
+import Blogs from "@/components/home/blogs";
 import ClientStores from "@/components/home/client-stories";
 import ClientTestimonials from "@/components/home/client-testimonials";
 import Features from "@/components/home/features";
@@ -11,6 +12,7 @@ export default function Home() {
           <Features />
           <ClientStores />
           <ClientTestimonials />
+          <Blogs />
         </div>
       </div>
     </main>

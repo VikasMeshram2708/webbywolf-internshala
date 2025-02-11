@@ -15,7 +15,6 @@ import i9 from "@/public/home/testimonials/9.png";
 import i10 from "@/public/home/testimonials/10.png";
 import i11 from "@/public/home/testimonials/11.png";
 import i12 from "@/public/home/testimonials/12.png";
-import { useEffect } from "react";
 
 export default function ClientTestimonials() {
   return (
@@ -25,9 +24,10 @@ export default function ClientTestimonials() {
     </div>
   );
 }
+
 function TestimonialsHeader() {
   return (
-    <div className="min-h-screen w-full relative">
+    <div className="h-screen w-full relative">
       <Image
         alt="client testimonials"
         src={bgImg}
@@ -95,10 +95,6 @@ function TestimonialsHeader() {
 }
 
 function CompanyList() {
-  useEffect(() => {
-    // Trigger animations on mount
-  }, []);
-
   const data = [
     { src: i1 },
     { src: i2 },
@@ -120,7 +116,7 @@ function CompanyList() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="w-full min-h-screen py-20 space-y-8"
+      className="w-full py-20 space-y-8"
     >
       <motion.h2
         initial={{ y: 30, opacity: 0 }}
