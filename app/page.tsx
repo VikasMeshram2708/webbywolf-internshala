@@ -1,6 +1,7 @@
 import Blogs from "@/components/home/blogs";
 import ClientStores from "@/components/home/client-stories";
 import ClientTestimonials from "@/components/home/client-testimonials";
+import CTA from "@/components/home/cta";
 import Features from "@/components/home/features";
 import React from "react";
 
@@ -13,6 +14,7 @@ export default function Home() {
           <ClientStores />
           <ClientTestimonials />
           <Blogs />
+          <CTA />
         </div>
       </div>
     </main>
